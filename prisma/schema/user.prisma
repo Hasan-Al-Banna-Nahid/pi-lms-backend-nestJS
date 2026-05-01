@@ -1,0 +1,27 @@
+model User {
+    id           String   @id @default(uuid())
+    email        String   @unique
+    passwordHash String
+    name         String
+    role         UserRole @default(STUDENT)
+
+    // Auth & Security
+    isVerified   Boolean   @default(false)
+    refreshToken String?
+    otpCode      String?
+    otpExpires   DateTime?
+
+    // Multi-tenancy
+    ownedCompany Company? @relation("CompanyOwner")
+    companyId    String?
+    company      Company? @relation("CompanyMembers", fields: [companyId], references: [id])
+
+    purchasedCourses CoursePurchase[]
+    devices          Device[]
+    enrollment       Enrollment[]
+    createdAt        DateTime         @default(now())
+    updatedAt        DateTime         @updatedAt
+    createdCourses   Course[]         @relation("CourseCreator")
+
+    @@index([email, companyId])
+}

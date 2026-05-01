@@ -1,0 +1,20 @@
+model Company {
+    id        String   @id @default(uuid())
+    name      String
+    domain    String   @unique
+    createdAt DateTime @default(now())
+
+    // Relations
+    ownerId String @unique
+    owner   User   @relation("CompanyOwner", fields: [ownerId], references: [id])
+    members User[] @relation("CompanyMembers")
+
+    subscription     Subscription?
+    paymentGateways  PaymentGateway[]
+    paymentConfig    Json?
+    paymentHistories PaymentHistory[]
+    courses          Course[] // FIXED: Added back-relation
+    courseBundles    CourseBundle[]
+
+    @@index([domain])
+}

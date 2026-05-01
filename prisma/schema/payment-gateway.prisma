@@ -1,0 +1,14 @@
+model PaymentGateway {
+    id             String          @id @default(uuid())
+    companyId      String
+    company        Company         @relation(fields: [companyId], references: [id])
+    provider       PaymentProvider
+    apiKey         String? // Encrypted
+    apiSecret      String? // Encrypted
+    merchantId     String?
+    webhookSecret  String?
+    publishableKey String? // Publishable Key
+    isActive       Boolean         @default(true)
+
+    @@unique([companyId, provider])
+}

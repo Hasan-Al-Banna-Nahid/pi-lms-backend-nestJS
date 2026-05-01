@@ -1,0 +1,11 @@
+model CourseBundle {
+    id          String       @id @default(uuid())
+    title       String
+    description String?
+    price       Float
+    courses     Course[]     @relation("BundleCourses") // Many-to-Many
+    companyId   String
+    enrollments Enrollment[] // FIXED: Added back-relation
+    company     Company      @relation(fields: [companyId], references: [id])
+    createdAt   DateTime     @default(now())
+}

@@ -1,0 +1,7 @@
+model Attachment {
+    id       String @id @default(uuid())
+    name     String
+    url      String
+    courseId String
+    course   Course @relation(fields: [courseId], references: [id])
+}

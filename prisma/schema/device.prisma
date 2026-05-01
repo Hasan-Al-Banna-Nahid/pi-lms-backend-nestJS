@@ -1,0 +1,9 @@
+model Device {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  deviceId  String
+  lastLogin DateTime @default(now())
+
+  @@unique([userId, deviceId])
+}

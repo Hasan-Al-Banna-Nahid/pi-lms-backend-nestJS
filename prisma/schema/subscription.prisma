@@ -1,0 +1,12 @@
+model Subscription {
+  id               String             @id @default(uuid())
+  companyId        String             @unique
+  company          Company            @relation(fields: [companyId], references: [id])
+  plan             PlanType
+  provider         PaymentProvider    @default(STRIPE)
+  externalSubId    String?            @unique // Stripe/Paddle Subscription ID
+  status           SubscriptionStatus @default(INCOMPLETE)
+  currentPeriodEnd DateTime?
+  autoRenew        Boolean            @default(true)
+  createdAt        DateTime           @default(now())
+}

@@ -1,0 +1,14 @@
+model PaymentHistory {
+    id            String          @id @default(uuid())
+    companyId     String
+    amount        Float
+    currency      String          @default("USD")
+    status        PaymentStatus   @default(PENDING)
+    provider      PaymentProvider
+    transactionId String          @unique // Stripe Session ID or Charge ID
+    metadata      Json?
+    createdAt     DateTime        @default(now())
+    updatedAt     DateTime        @updatedAt
+
+    company Company @relation(fields: [companyId], references: [id])
+}

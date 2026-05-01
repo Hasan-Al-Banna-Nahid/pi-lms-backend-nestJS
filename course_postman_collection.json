@@ -1,0 +1,346 @@
+{
+  "info": {
+    "_postman_id": "YOUR_POSTMAN_COLLECTION_ID",
+    "name": "PI-LMS Auth - Course Module",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variables": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "YOUR_JWT_TOKEN",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "AI Generate Course",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{
+  "prompt": "Create a course about advanced JavaScript with 5 modules and 3 videos per module, focusing on asynchronous programming and modern ES features."
+}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/courses/ai-generate/:companyId",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses",
+            "ai-generate",
+            ":companyId"
+          ],
+          "variable": [
+            {
+              "key": "companyId",
+              "value": "65f0a0d6e8e8a0a0a0a0a0a0"
+            }
+          ]
+        },
+        "description": "Generates course architecture using AI. Replace :companyId with an actual company ID."
+      },
+      "response": []
+    },
+    {
+      "name": "Create Base Course (Manual)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{
+  "title": "Introduction to NestJS",
+  "description": "A beginner-friendly course on NestJS framework, covering controllers, services, and modules.",
+  "price": 49.99,
+  "status": "DRAFT",
+  "password": "optional_password",
+  "isGiftingEnabled": false,
+  "isProtectionEnabled": true,
+  "dripEnabled": false,
+  "prerequisiteIds": [],
+  "milestones": [
+    {
+      "title": "Module 1: Getting Started",
+      "order": 1,
+      "contents": [
+        {
+          "title": "What is NestJS?",
+          "description": "Overview of NestJS architecture and core concepts.",
+          "videoUrl": "https://example.com/video1.mp4",
+          "videoSource": "NATIVE",
+          "isFreePreview": true,
+          "order": 1
+        },
+        {
+          "title": "Setting up your first project",
+          "description": "A step-by-step guide to initialize a NestJS project.",
+          "videoUrl": "https://example.com/video2.mp4",
+          "videoSource": "YOUTUBE",
+          "isFreePreview": false,
+          "order": 2
+        }
+      ]
+    },
+    {
+      "title": "Module 2: Controllers and Routes",
+      "order": 2,
+      "contents": [
+        {
+          "title": "Defining Controllers",
+          "description": "How to create and use controllers in NestJS.",
+          "videoUrl": "https://example.com/video3.mp4",
+          "videoSource": "VIMEO",
+          "isFreePreview": false,
+          "order": 1
+        }
+      ]
+    }
+  ]
+}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/courses/:companyId",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses",
+            ":companyId"
+          ],
+          "variable": [
+            {
+              "key": "companyId",
+              "value": "65f0a0d6e8e8a0a0a0a0a0a0"
+            }
+          ]
+        },
+        "description": "Creates a base course manually. If uploading a thumbnail file, change Content-Type to `multipart/form-data` and send `thumbnail` as a file and `data` as a JSON string of the body above. Replace :companyId with an actual company ID."
+      },
+      "response": []
+    },
+    {
+      "name": "Gift Course",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{
+  "studentId": "65f0a0d6e8e8a0a0a0a0a0a1"
+}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/courses/:id/gift",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses",
+            ":id",
+            "gift"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "65f0a0d6e8e8a0a0a0a0a0a2"
+            }
+          ]
+        },
+        "description": "Gifts a course to a student. Replace :id with the course ID and studentId with the recipient's ID."
+      },
+      "response": []
+    },
+    {
+      "name": "Export Course",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/courses/:id/export",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses",
+            ":id",
+            "export"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "65f0a0d6e8e8a0a0a0a0a0a2"
+            }
+          ]
+        },
+        "description": "Exports course data. Replace :id with the course ID."
+      },
+      "response": []
+    },
+    {
+      "name": "Import Course",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{
+  "title": "Imported Course Example",
+  "description": "A course imported from another source, potentially from a content bank.",
+  "price": 29.99,
+  "status": "PUBLIC",
+  "password": "another_optional_password",
+  "isGiftingEnabled": true,
+  "isProtectionEnabled": false,
+  "dripEnabled": true,
+  "prerequisiteIds": [],
+  "milestones": [
+    {
+      "title": "Imported Module: Introduction",
+      "order": 1,
+      "contents": [
+        {
+          "title": "Welcome to the Imported Course",
+          "description": "This content was brought in from an external source.",
+          "videoUrl": "https://example.com/imported-video.mp4",
+          "videoSource": "YOUTUBE",
+          "isFreePreview": false,
+          "order": 1
+        }
+      ]
+    }
+  ]
+}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/courses/import/:companyId",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses",
+            "import",
+            ":companyId"
+          ],
+          "variable": [
+            {
+              "key": "companyId",
+              "value": "65f0a0d6e8e8a0a0a0a0a0a0"
+            }
+          ]
+        },
+        "description": "Imports course data. Replace :companyId with an actual company ID. The body structure is similar to creating a new course."
+      },
+      "response": []
+    },
+    {
+      "name": "Preview Course",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{jwt_token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/courses/:id/preview",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "courses",
+            ":id",
+            "preview"
+          ],
+          "variable": [
+            {
+              "key": "id",
+              "value": "65f0a0d6e8e8a0a0a0a0a0a2"
+            }
+          ]
+        },
+        "description": "Previews course data for students. Replace :id with the course ID. Assumes it might be protected by JWT for full details, otherwise public."
+      },
+      "response": []
+    }
+  ]
+}

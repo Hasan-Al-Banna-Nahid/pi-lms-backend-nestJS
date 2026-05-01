@@ -1,0 +1,11 @@
+model CoursePurchase {
+  id          String          @id @default(uuid())
+  userId      String
+  user        User            @relation(fields: [userId], references: [id])
+  courseId    String
+  amount      Float
+  currency    String          @default("USD")
+  provider    PaymentProvider
+  referenceId String          @unique // Transaction/Session ID
+  createdAt   DateTime        @default(now())
+}

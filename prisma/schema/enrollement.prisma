@@ -1,0 +1,18 @@
+model Enrollment {
+    id        String        @id @default(uuid())
+    studentId String
+    courseId  String?
+    bundleId  String?
+    course    Course?       @relation(fields: [courseId], references: [id])
+    bundle    CourseBundle? @relation(fields: [bundleId], references: [id])
+    user      User          @relation(fields: [studentId], references: [id])
+
+    isGifted   Boolean          @default(false)
+    giftedBy   String?
+    enrolledAt DateTime         @default(now())
+    expiresAt  DateTime?
+    progress   Float            @default(0)
+    status     EnrollmentStatus @default(ACTIVE)
+
+    @@unique([studentId, courseId])
+}

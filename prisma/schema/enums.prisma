@@ -1,0 +1,69 @@
+enum UserRole {
+    SUPER_ADMIN
+    ADMIN
+    LEAD_INSTRUCTOR
+    SUB_INSTRUCTOR
+    MANAGER
+    CTO
+    JOB_PLACEMENT_LEAD
+    JOB_PLACEMENT_SUPPORT
+    COO
+    TECHNOLOGY_INSTRUCTOR
+    STUDENT
+}
+
+enum PlanType {
+    STARTER
+    BUILDER
+    GROWTH
+    CORE
+    PRO
+}
+
+enum SubscriptionStatus {
+    ACTIVE
+    CANCELED
+    PAST_DUE
+    INCOMPLETE
+    SUSPENDED
+}
+
+enum PaymentProvider {
+    STRIPE
+    PAYPAL
+    AUTHORIZE_NET
+    PADDLE
+    VERIFONE
+    MOLLIE
+    KLARNA
+    RAZORPAY
+    PAYSTACK
+    ALIPAY
+}
+
+enum PaymentStatus {
+    PENDING
+    SUCCESS
+    FAILED
+    REFUNDED
+}
+
+enum CourseStatus {
+    DRAFT
+    PUBLIC
+    PRIVATE
+    PASSWORD_PROTECTED
+}
+
+enum VideoSource {
+    NATIVE
+    YOUTUBE
+    VIMEO
+}
+
+enum EnrollmentStatus {
+    ACTIVE
+    COMPLETED
+    EXPIRED
+    REVOKED
+}

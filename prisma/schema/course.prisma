@@ -1,0 +1,30 @@
+model Course {
+    id                  String       @id @default(uuid())
+    title               String
+    slug                String       @unique
+    description         String?
+    thumbnail           String?
+    price               Float        @default(0)
+    status              CourseStatus @default(DRAFT)
+    password            String?
+    isGiftingEnabled    Boolean      @default(false)
+    isProtectionEnabled Boolean      @default(true)
+    isBundle            Boolean      @default(false)
+    dripEnabled         Boolean      @default(false)
+
+    companyId String
+    company   Company @relation(fields: [companyId], references: [id])
+    creatorId String
+    creator   User    @relation("CourseCreator", fields: [creatorId], references: [id])
+
+    prerequisites  Course[] @relation("CoursePrerequisites")
+    prerequisiteOf Course[] @relation("CoursePrerequisites")
+
+    milestones       Milestone[]
+    attachments      Attachment[]
+    bundles          CourseBundle[] @relation("BundleCourses")
+    enrolledStudents Enrollment[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

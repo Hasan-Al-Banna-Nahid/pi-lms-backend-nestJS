@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Cancelled</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --google-red: #ea4335;
+        --light-red: #fde8e8;
+        --text-grey: #5f6368;
+      }
+      body {
+        font-family: 'Google Sans', sans-serif;
+        background-color: #f8f9fa;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .card {
+        background: white;
+        padding: 40px;
+        border-radius: 24px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        border: 1px solid #e0e0e0;
+      }
+      .icon-box {
+        width: 80px;
+        height: 80px;
+        background: var(--light-red);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 24px;
+      }
+      .icon-box svg {
+        width: 40px;
+        height: 40px;
+        fill: var(--google-red);
+      }
+      h1 {
+        color: #202124;
+        font-size: 24px;
+        margin-bottom: 12px;
+        font-weight: 500;
+      }
+      p {
+        color: var(--text-grey);
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 32px;
+      }
+      .btn {
+        background-color: #202124;
+        color: white;
+        padding: 12px 32px;
+        border-radius: 100px;
+        text-decoration: none;
+        font-weight: 500;
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+      .btn:hover {
+        background-color: #000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </svg>
+      </div>
+      <h1>Payment Cancelled</h1>
+      <p>
+        Your transaction was not completed. No charges were made to your
+        account. You can try again whenever you're ready.
+      </p>
+      <a href="/" class="btn">Return to Shop</a>
+    </div>
+  </body>
+</html>
