@@ -53,7 +53,6 @@ export class PaymentController {
         companyId,
       );
 
-      // সফল হলে সরাসরি UI দেখাবে
       return res.send(
         this.getStatusPage(
           'success',
