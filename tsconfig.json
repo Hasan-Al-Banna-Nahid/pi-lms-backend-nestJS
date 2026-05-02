@@ -10,7 +10,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "types": ["node", "jest", "multer"], // এখানে 'multer' যোগ করুন
+    "types": ["node", "jest", "multer"],
     "skipLibCheck": true,
     "incremental": true,
     "strictNullChecks": false,
