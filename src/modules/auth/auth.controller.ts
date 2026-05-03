@@ -36,7 +36,7 @@ export class AuthController {
     return this.authService.resendOtp(email);
   }
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('SUPER_ADMIN', 'ADMIN')
+  @Roles('SUPER_ADMIN', 'ADMIN', 'MANAGER')
   @Post('create-staff')
   async createStaff(@Body() body: any, @Req() req: any) {
     return this.authService.createStaff(body, req.user);
